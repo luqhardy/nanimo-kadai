@@ -16,15 +16,22 @@ nanimo-kadaiは、PHPとMySQL（MAMP環境）を利用した簡単なSNSアプ�
 - バックエンド: PHP
 - データベース: MySQL（MAMP推奨）
 
+
 ## セットアップ方法
 1. MAMPをインストールし、MySQLサーバーを起動します。
 2. MySQLで `nanimo_db` というデータベースを作成します。
-3. 以下のSQLで `users` テーブルを作成してください:
+3. 以下のSQLで `users` テーブルと `posts` テーブルを作成してください:
 	 ```sql
 	 CREATE TABLE users (
 		 id INT AUTO_INCREMENT PRIMARY KEY,
 		 username VARCHAR(255) NOT NULL UNIQUE,
 		 password VARCHAR(255) NOT NULL
+	 );
+
+	 CREATE TABLE posts (
+		 id INT AUTO_INCREMENT PRIMARY KEY,
+		 content TEXT NOT NULL,
+		 created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 	 );
 	 ```
 4. 必要に応じてユーザーを登録します（パスワードはPHPの `password_hash` でハッシュ化してください）。

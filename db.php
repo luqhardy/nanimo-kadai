@@ -1,10 +1,10 @@
+
 <?php
-// db.php
 function getDb() {
     $host = 'localhost';
-    $db   = 'nanimo_db'; // Change to your database name
-    $user = 'root';      // Default MAMP user
-    $pass = 'root';      // Default MAMP password
+    $db   = 'nanimo_db';
+    $user = 'root';
+    $pass = 'root';
     $charset = 'utf8mb4';
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
     $options = [
