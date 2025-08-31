@@ -14,12 +14,19 @@
         </header>
 
         <main>
-            <div class="post-form">
+            <div class="signin-form">
+                <h2>サインイン</h2>
+                <input type="text" id="signin-username" placeholder="ユーザー名">
+                <input type="password" id="signin-password" placeholder="パスワード">
+                <button id="signin-button">サインイン</button>
+                <div id="signin-error" style="color:red;"></div>
+            </div>
+            <div class="post-form" style="display:none;">
                 <textarea id="post-content" placeholder="何も書いてください"></textarea>
                 <button id="submit-button">投稿する</button>
             </div>
             <div id="posts-container" class="posts-grid">
-                </div>
+            </div>
         </main>
     </div>
 

@@ -3,6 +3,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitButton = document.getElementById('submit-button');
     const postsContainer = document.getElementById('posts-container');
     const apiUrl = 'api.php';
+    // Sign-in elements
+    const signinForm = document.querySelector('.signin-form');
+    const signinUsername = document.getElementById('signin-username');
+    const signinPassword = document.getElementById('signin-password');
+    const signinButton = document.getElementById('signin-button');
+    const signinError = document.getElementById('signin-error');
+    const postForm = document.querySelector('.post-form');
+    // サインイン処理
+    signinButton.addEventListener('click', async () => {
+        const username = signinUsername.value.trim();
+        const password = signinPassword.value;
+        signinError.textContent = '';
+        if (!username || !password) {
+            signinError.textContent = 'ユーザー名とパスワードを入力してください';
+            return;
+        }
+        try {
+            const response = await fetch('signin.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+            });
+            const result = await response.json();
+            if (result.success) {
+                signinForm.style.display = 'none';
+                postForm.style.display = '';
+            } else {
+                signinError.textContent = result.error || 'サインインに失敗しました';
+            }
+        } catch (error) {
+            signinError.textContent = '通信エラーが発生しました';
+        }
+    });
 
     // 投稿を読み込んで表示する関数
     const fetchPosts = async () => {
